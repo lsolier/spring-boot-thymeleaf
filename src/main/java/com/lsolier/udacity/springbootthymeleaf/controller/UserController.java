@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,17 @@ public class UserController {
     list.add(new User(1,"Nick", false));
     model.addAttribute("list", list);
     return "loop";
+  }
+
+  @RequestMapping("/scope")
+  public String scope(HttpServletRequest request, Model model) {
+    //Request
+    request.setAttribute("request", "request data");
+    //Session
+    request.getSession().setAttribute("session", "session data");
+    //Application
+    request.getSession().getServletContext().setAttribute("application", "application data");
+    return "scope";
   }
 
   private String convertGPA(double grade) {
