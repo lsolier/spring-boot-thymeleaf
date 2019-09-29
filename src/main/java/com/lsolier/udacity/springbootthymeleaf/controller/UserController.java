@@ -1,8 +1,12 @@
 package com.lsolier.udacity.springbootthymeleaf.controller;
 
+import com.lsolier.udacity.springbootthymeleaf.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -14,6 +18,17 @@ public class UserController {
     model.addAttribute("grade", grade);
     model.addAttribute("GPA", convertGPA(grade));
     return "demo";
+  }
+
+  @RequestMapping("/loop")
+  public String loop(Model model) {
+    List<User> list = new ArrayList<>();
+    list.add(new User(1,"Luis", true));
+    list.add(new User(1,"Diana", true));
+    list.add(new User(1,"Maycol", false));
+    list.add(new User(1,"Nick", false));
+    model.addAttribute("list", list);
+    return "loop";
   }
 
   private String convertGPA(double grade) {
