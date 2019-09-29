@@ -8,6 +8,8 @@
     <h3>Thymeleaf Scope</h3>
     Request: <span th:text="${#httpServletRequest.getAttribute('request')}"></span><br/>
     Session: <span th:text="${session.session}"></span><br/>
-    Application: <span th:text="${application.application}"></span>
+    Application: <span th:text="${application.application}"></span><br/>
+    <a th:href="@{~/demo}">Visit to demo page</a><br/>
+    <a th:href="@{~/demo(id=1, name=luis)}">Visit to demo page with parameters</a>
 </body>
 </html>
